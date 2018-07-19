@@ -1,0 +1,23 @@
+---
+root: true
+extends:
+- airbnb
+- plugin:flowtype/recommended
+- prettier
+plugins:
+- compat
+- flowtype
+env:
+  browser: true
+  jest: true
+globals:
+  __VERSION__: true
+parserOptions:
+  ecmaVersion: 6
+  sourceType: module
+rules:
+  compat/compat: 2
+  import/prefer-default-export: 0
+  no-console: 0
+  no-underscore-dangle: 0
+  react/destructuring-assignment: 0

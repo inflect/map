@@ -1,0 +1,72 @@
+{
+  "name": "@inflect/map",
+  "version": "1.0.0",
+  "main": "./dist/main.js",
+  "license": "BSD-3-Clause",
+  "publishConfig": {
+    "access": "public"
+  },
+  "browserslist": [
+    "> 0.5%",
+    "ie >= 8"
+  ],
+  "scripts": {
+    "build": "webpack --mode=production",
+    "build:packages": "lerna exec yarn build",
+    "distribute": "yarn test && lerna publish",
+    "libdefs": "flow-typed install --overwrite",
+    "lint": "eslint ./src/** --ext js --cache --ignore-path .gitignore",
+    "lint:fix": "prettier --write './src/**/*.js' --ignore-path .gitignore",
+    "postmerge": "yarn && yarn libdefs",
+    "precommit": "lint-staged",
+    "prepush": "yarn test",
+    "test": "yarn todo && yarn flow && yarn lint && jest",
+    "todo": "leasot ./src/**",
+    "watch": "webpack-dev-server --mode=development"
+  },
+  "lint-staged": {
+    "./src/**/*.{js,jsx}": [
+      "yarn lint:fix",
+      "git add"
+    ],
+    "yarn.lock": [
+      "yarn libdefs",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "@turf/helpers": "^6.1.4",
+    "es6-promise": "^4.2.4",
+    "mapbox-gl": "^0.47.0",
+    "unfetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.54",
+    "@babel/preset-env": "^7.0.0-beta.54",
+    "@babel/preset-flow": "^7.0.0-beta.54",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^8.2.6",
+    "babel-jest": "^23.4.0",
+    "babel-loader": "^8.0.0-beta.3",
+    "copy-webpack-plugin": "^4.5.2",
+    "eslint": "^5.1.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-compat": "^2.5.0",
+    "eslint-plugin-flowtype": "^2.50.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.9.1",
+    "flow-bin": "^0.76.0",
+    "flow-typed": "^2.5.1",
+    "husky": "^0.14.3",
+    "jest": "^23.4.1",
+    "leasot": "^6.3.0",
+    "lerna": "^2.11.0",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.13.5",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.4"
+  }
+}

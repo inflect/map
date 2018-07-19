@@ -1,0 +1,24 @@
+{
+  "name": "@inflect/react-map",
+  "version": "1.0.0",
+  "main": "./dist/main.js",
+  "license": "BSD-3-Clause",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "webpack --mode=production",
+    "watch": "webpack-dev-server --mode=development --hot"
+  },
+  "dependencies": {
+    "@inflect/map": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.0.0-beta.51",
+    "uglifyjs-webpack-plugin": "^1.2.7"
+  },
+  "peerDependencies": {
+    "react": "^16.0",
+    "react-dom": "^16.0"
+  }
+}

@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+<head>
+  <style>
+    body {
+      background: #fafafa;
+      font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+    }
+    a, a:visited {
+      color: #0084ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    h1 {
+      text-align: center;
+    }
+    section {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .container {
+      height: 400px;
+    }
+    .example {
+      background: #fff;
+      border-radius: 5px;
+      border: 1px solid #eaeaea;
+      margin-bottom: 60px;
+      padding: 8px 8px 5px 8px;
+    }
+    .example > div {
+      width: 100%;
+    }
+    #custom .inflect-map-popup {
+      color: pink;
+      font-family: "Courier";
+    }
+
+    #custom .inflect-map-popup a {
+      color: orange;
+    }
+  </style>
+</head>
+<body>
+  <h1>Inflect Map Examples</h1>
+  <section>
+    <p>
+      Code samples of <a href="https://github.com/InflectInc/map">@inflect/map</a>.
+    </p>
+    <h2>Basic map</h2>
+    <div class="example">
+      <div class="container">
+        <div id="basic"></div>
+      </div>
+      <iframe width="100%" height="200" src="//jsfiddle.net/Lcju1zmv/8/embedded/js,html,css/" frameborder="0"></iframe>
+    </div>
+    <h2>Map with specified center coordinate and zoom</h2>
+    <div class="example">
+      <div class="container">
+        <div id="coords"></div>
+      </div>
+      <iframe width="100%" height="300" src="//jsfiddle.net/pe3r9o70/1/embedded/js,html,css/" frameborder="0"></iframe>
+    </div>
+    <h2>Set map properties</h2>
+    <div class="example">
+      <div class="container">
+        <div id="random"></div>
+      </div>
+      <iframe width="100%" height="300" src="//jsfiddle.net/y6wtb3fc/5/embedded/js,html,css/" frameborder="0"></iframe>
+    </div>
+    <h2>Customize map popup appearance</h2>
+    <div class="example">
+      <div class="container">
+        <div id="custom"></div>
+      </div>
+      <iframe width="100%" height="300" src="//jsfiddle.net/xkpz60gs/embedded/js,html,css/" frameborder="0"></iframe>
+    </div>
+    <h2>Static map with click event handler</h2>
+    <div class="example">
+      <div class="container">
+        <div id="events"></div>
+      </div>
+      <iframe width="100%" height="300" src="//jsfiddle.net/45zjwscy/3/embedded/js,html,css/" frameborder="0"></iframe>
+    </div>
+  </section>
+  <script src="https://unpkg.com/waypoints@4.0.1/lib/noframework.waypoints.min.js"></script>
+  <script src="./main.js"></script>
+  <script>
+    /* eslint-disable */
+    var map = new InflectMap();
+    map.init({
+      apiBase: 'https://api.dev.inflect.com',
+      id: 'basic',
+      theme: 'light',
+      token: 'LKpWadaVKrGfLXQAjb3tPMzi',
+    });
+
+    var coordWaypoint = new Waypoint({
+      element: document.getElementById('coords'),
+      handler: function(direction) {
+        var coordMap = new InflectMap();
+        coordMap.init({
+          apiBase: 'https://api.dev.inflect.com',
+          id: 'coords',
+          token: 'ueCCH6nMwbocgtc682mu1YAB',
+          autoCamera: false,
+          lat: 48.41716815753557,
+          lng: 11.726302890161037,
+          theme: 'day',
+          zoom: 3.5,
+        });
+        coordWaypoint.destroy();
+      },
+      offset: Waypoint.viewportHeight() 
+    });
+
+    function genHex() {
+      var hex = '0123456789abcdef';
+      var color = ['#'];
+      for (var i = 0; i < 6; i++) {
+        var rand = Math.floor(Math.random() * hex.length);
+        color.push(hex[rand]);
+      }
+      return color.join('');
+    }
+
+    var randomWaypoint = new Waypoint({
+      element: document.getElementById('random'),
+      handler: function(direction) {
+        // initialize map
+        var map = new InflectMap();
+        map.init({
+          apiBase: 'https://api.dev.inflect.com',
+          id: 'random',
+          token: 'ueCCH6nMwbocgtc682mu1YAB',
+          theme: 'dark',
+        });
+
+        // cycle through random values every two seconds
+        setInterval(() => {
+          map.set({
+            dotColor: genHex(),
+            dotRadius: Math.random() * 8,
+            dotBorderColor: genHex(),
+            dotBorderWidth: Math.random() * 8,
+          })
+        }, 2000);
+        randomWaypoint.destroy();
+      },
+      offset: Waypoint.viewportHeight() 
+    });
+
+    var customPopupWaypoint = new Waypoint({
+      element: document.getElementById('custom'),
+      handler: function(direction) {
+        var map = new InflectMap();
+        map.init({
+          apiBase: 'https://api.dev.inflect.com',
+          id: 'custom',
+          token: 'ueCCH6nMwbocgtc682mu1YAB',
+          theme: 'night',
+          dotColor: '#222',
+          dotBorderColor: 'red',
+          dotBorderWidth: 2,
+        });
+        customPopupWaypoint.destroy();
+      },
+      offset: Waypoint.viewportHeight() 
+    });
+
+    var eventWaypoint = new Waypoint({
+      element: document.getElementById('custom'),
+      handler: function(direction) {
+        var map = new InflectMap();
+        map.init({
+          apiBase: 'https://api.dev.inflect.com',
+          id: 'events',
+          token: 'ueCCH6nMwbocgtc682mu1YAB',
+          theme: 'satellite',
+          static: true,
+          dotColor: 'teal',
+          dotBorderWidth: 3,
+          onClick: function (features) {
+            if (features.length) {
+              alert('Clicked on ' + features[0].properties.name);
+            }
+          },
+        });
+        eventWaypoint.destroy();
+      },
+      offset: Waypoint.viewportHeight() 
+    });
+  </script>
+</body>
+</html>
