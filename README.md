@@ -12,14 +12,14 @@ Under the hood, @inflect/map uses [Mapbox GL JS](https://github.com/mapbox/mapbo
 
     yarn add @inflect/map
     
-or 
+or right before the closing `</body>` tag:
 
     <script src="https://unpkg.com/@inflect/map@1/dist/main.js"></script>
 
 
 ## Usage
 
-Once you've installed this package, create an instance of `InflectMap` and initialize it with your `token` and an existing HTML element's `id`.
+Once you've installed this package, create an instance of `InflectMap` and initialize it with your `token` and an existing HTML element's `id`. Make sure that your script or bundle has loaded first so that `InflectMap` is in scope.
 
 ```JS
 var map = new InflectMap();
@@ -120,7 +120,7 @@ We also host a page that you can embed via iframe. While we highly recommend ins
 Required and basic properties listed in [Usage](#usage) are available to the iframe as query parameters. Since the values are read from the URL path, you must URL-encode special characters (for example, when passing in a hex color value, you must convert `#` into its URL-encoded representation `%23`, in order to avoid the value being interpreted as a document fragment).
 
 ```HTML
-<iframe src="https://embed.inflect.com/map/1/?token=<YOUR_TOKEN_HERE>" width="100%" height="500" frameborder="0"></iframe>
+<iframe src="https://embed.inflect.com/map/1/?token=YOUR_TOKEN_HERE" width="100%" height="500" frameborder="0"></iframe>
 ```
 
 ## A note when rendering server-side

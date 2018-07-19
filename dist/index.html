@@ -44,7 +44,7 @@
   </style>
 </head>
 <body>
-  <h1>Inflect Map Examples</h1>
+  <h1>Inflect Map examples</h1>
   <section>
     <p>
       Code samples of <a href="https://github.com/InflectInc/map">@inflect/map</a>.
@@ -54,47 +54,46 @@
       <div class="container">
         <div id="basic"></div>
       </div>
-      <iframe width="100%" height="200" src="//jsfiddle.net/Lcju1zmv/8/embedded/js,html,css/" frameborder="0"></iframe>
-    </div>
-    <h2>Map with specified center coordinate and zoom</h2>
-    <div class="example">
-      <div class="container">
-        <div id="coords"></div>
-      </div>
-      <iframe width="100%" height="300" src="//jsfiddle.net/pe3r9o70/1/embedded/js,html,css/" frameborder="0"></iframe>
-    </div>
-    <h2>Set map properties</h2>
-    <div class="example">
-      <div class="container">
-        <div id="random"></div>
-      </div>
-      <iframe width="100%" height="300" src="//jsfiddle.net/y6wtb3fc/5/embedded/js,html,css/" frameborder="0"></iframe>
+      <iframe width="100%" height="200" src="//jsfiddle.net/0kqdgL84/1/embedded/js,html,css/" frameborder="0"></iframe>
     </div>
     <h2>Customize map popup appearance</h2>
     <div class="example">
       <div class="container">
         <div id="custom"></div>
       </div>
-      <iframe width="100%" height="300" src="//jsfiddle.net/xkpz60gs/embedded/js,html,css/" frameborder="0"></iframe>
+      <iframe width="100%" height="300" src="//jsfiddle.net/j98b4vxz/embedded/js,html,css/" frameborder="0"></iframe>
+    </div>
+    <h2>Map with specified center coordinate and zoom</h2>
+    <div class="example">
+      <div class="container">
+        <div id="coords"></div>
+      </div>
+      <iframe width="100%" height="300" src="//jsfiddle.net/pe3r9o70/2/embedded/js,html,css/" frameborder="0"></iframe>
+    </div>
+    <h2>Set map properties</h2>
+    <div class="example">
+      <div class="container">
+        <div id="random"></div>
+      </div>
+      <iframe width="100%" height="300" src="//jsfiddle.net/nx2bc6do/1/embedded/js,html,css/" frameborder="0"></iframe>
     </div>
     <h2>Static map with click event handler</h2>
     <div class="example">
       <div class="container">
         <div id="events"></div>
       </div>
-      <iframe width="100%" height="300" src="//jsfiddle.net/45zjwscy/3/embedded/js,html,css/" frameborder="0"></iframe>
+      <iframe width="100%" height="300" src="//jsfiddle.net/vhz4mtqx/embedded/js,html,css/" frameborder="0"></iframe>
     </div>
   </section>
   <script src="https://unpkg.com/waypoints@4.0.1/lib/noframework.waypoints.min.js"></script>
-  <script src="./main.js"></script>
+  <script src="https://unpkg.com/@inflect/map@1/dist/main.js"></script>
   <script>
     /* eslint-disable */
     var map = new InflectMap();
     map.init({
-      apiBase: 'https://api.dev.inflect.com',
       id: 'basic',
       theme: 'light',
-      token: 'LKpWadaVKrGfLXQAjb3tPMzi',
+      token: 'DbBmnz7uqhSCPdcuynNYMGpZ',
     });
 
     var coordWaypoint = new Waypoint({
@@ -102,15 +101,15 @@
       handler: function(direction) {
         var coordMap = new InflectMap();
         coordMap.init({
-          apiBase: 'https://api.dev.inflect.com',
           id: 'coords',
-          token: 'ueCCH6nMwbocgtc682mu1YAB',
+          token: 'DbBmnz7uqhSCPdcuynNYMGpZ',
           autoCamera: false,
-          lat: 48.41716815753557,
-          lng: 11.726302890161037,
+          lat: 50.159969495111994,
+          lng: 11.664154833180532,
           theme: 'day',
           zoom: 3.5,
         });
+        window.themap = coordMap;
         coordWaypoint.destroy();
       },
       offset: Waypoint.viewportHeight() 
@@ -132,9 +131,8 @@
         // initialize map
         var map = new InflectMap();
         map.init({
-          apiBase: 'https://api.dev.inflect.com',
           id: 'random',
-          token: 'ueCCH6nMwbocgtc682mu1YAB',
+          token: 'NQjSphGeQyjnmALeKEfJTz6a',
           theme: 'dark',
         });
 
@@ -157,9 +155,8 @@
       handler: function(direction) {
         var map = new InflectMap();
         map.init({
-          apiBase: 'https://api.dev.inflect.com',
           id: 'custom',
-          token: 'ueCCH6nMwbocgtc682mu1YAB',
+          token: 'NQjSphGeQyjnmALeKEfJTz6a',
           theme: 'night',
           dotColor: '#222',
           dotBorderColor: 'red',
@@ -175,9 +172,8 @@
       handler: function(direction) {
         var map = new InflectMap();
         map.init({
-          apiBase: 'https://api.dev.inflect.com',
           id: 'events',
-          token: 'ueCCH6nMwbocgtc682mu1YAB',
+          token: 'NQjSphGeQyjnmALeKEfJTz6a',
           theme: 'satellite',
           static: true,
           dotColor: 'teal',
