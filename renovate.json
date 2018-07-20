@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "docker": {
+    "enabled": false
+  },
+  "labels": ["dependency"],
+  "pinVersions": false,
+  "devDependencies": {
+    "enabled": false
+  }
+}
