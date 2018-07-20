@@ -54,11 +54,13 @@ class InflectMap {
       this._pops = config.pops;
     }
 
-    setElementStyle(config.id, `width: ${config.width}; height: ${config.height}; overflow: auto`);
     if (this._hasWebGL) {
       insertMapboxCSS();
+      setElementStyle(config.id, `width: ${config.width}; height: ${config.height}`);
       this.startMapbox();
       insertInflectLogo(config.id);
+    } else {
+      setElementStyle(config.id, `width: ${config.width}; height: ${config.height}; overflow: auto`);
     }
   }
 
