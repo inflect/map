@@ -1,6 +1,6 @@
 {
   "name": "@inflect/map",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./dist/main.js",
   "license": "BSD-3-Clause",
   "publishConfig": {
