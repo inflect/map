@@ -30,23 +30,26 @@ export const getMapStyle = (theme: string): string => {
 };
 
 export const getGeoJson = (pops: Object[]) => {
-  const points = pops
-    .filter(pop => pop.building.lng && pop.building.lat)
-    .map(pop => {
-      const properties = {
-        address: pop.building.address || '',
-        city: pop.building.city || '',
-        country_name: pop.building.country_name || '',
-        name: pop.name || '',
-        slug: pop.slug || '',
-        id: pop.uuid || '',
-        url: pop.url || '',
-        state: pop.building.state || '',
-        suite: pop.building_location || '',
-        zip_code: pop.building.zip_code || '',
-      };
-      return point([pop.building.lng, pop.building.lat], properties);
-    });
+  const points = pops.filter(pop => pop.building.lng && pop.building.lat).map(pop => {
+    const properties = {
+      address: pop.building.address || '',
+      city: pop.building.city || '',
+      country_name: pop.building.country_name || '',
+      name: pop.name || '',
+      slug: pop.slug || '',
+      id: pop.uuid || '',
+      url: pop.url || '',
+      state: pop.building.state || '',
+      suite: pop.building_location || '',
+      zip_code: pop.building.zip_code || '',
+    };
+
+    if (pop.style) {
+      Object.assign(properties, pop.style);
+    }
+
+    return point([pop.building.lng, pop.building.lat], properties);
+  });
   return featureCollection(points);
 };
 
@@ -105,7 +108,7 @@ export const getPopupMarkup = (feature: Object, token: string) => {
   return div;
 };
 
-export const showPopup = (features: Object[], map: Object, token: string, popup?: (Object) => string | HTMLElement) => {
+export const showPopup = (features: Object[], map: Object, token: string, popup?: Object => string | HTMLElement) => {
   if (features.length) {
     const popupMarkup = popup ? popup(features[0]) : getPopupMarkup(features[0], token);
     new mapboxgl.Popup({ offset: 16, closeButton: false })
