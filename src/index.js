@@ -34,7 +34,7 @@ class InflectMap {
   _pops: Object[];
 
   mapbox: Object;
-  
+
   constructor() {
     this._hasWebGL = mapboxgl && mapboxgl.supported();
     this._hoverLayers = [];
@@ -204,7 +204,13 @@ class InflectMap {
 
   renderPopsOnMap(layerName?: string, pops?: Object[]) {
     const name = layerName || 'main';
-    const layer = genLayer(name, this._config);
+    let config = this._config;
+    // if pops is 1, try to config the layer style from the pop passed in
+    if (pops && pops.length === 1 && pops[0].style) {
+      config = { ...this._config, ...pops[0].style };
+    }
+
+    const layer = genLayer(name, config);
     const data = getGeoJson(pops || this._pops);
     const mapSource = this.mapbox.getSource(name);
     if (!mapSource) {
@@ -248,7 +254,7 @@ class InflectMap {
 
     // coordinate / zoom changes
     if (opt('lat') || opt('lng') || opt('zoom')) {
-      const center = { 
+      const center = {
         lat: opts.lat || this._config.lat,
         lng: opts.lng || this._config.lng,
       };
