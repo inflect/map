@@ -44,8 +44,8 @@ export const getGeoJson = (pops: Object[]) => {
       zip_code: pop.building.zip_code || '',
     };
 
-    if (pop.style) {
-      Object.assign(properties, pop.style);
+    if (pop.additionalProperties) {
+      Object.assign(properties, pop.additionalProperties);
     }
 
     return point([pop.building.lng, pop.building.lat], properties);
