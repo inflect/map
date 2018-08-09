@@ -4,22 +4,8 @@ import type { Config } from './config';
 export const parseBoolean = (val: any): boolean => val === true || val === 'true' || val === 1 || val === '1';
 
 export const coerce = (config: Config): Config => {
-  const floats = [
-    'cameraDuration',
-    'dotBorderWidth',
-    'dotRadius',
-    'lat',
-    'lng',
-    'maxZoom',
-    'minZoom',
-    'zoom',
-  ];
-  const bools = [
-    'autoCamera',
-    'scale',
-    'scrollZoom',
-    'static',
-  ];
+  const floats = ['cameraDuration', 'dotBorderWidth', 'dotRadius', 'lat', 'lng', 'maxZoom', 'minZoom', 'zoom'];
+  const bools = ['autoCamera', 'scale', 'scrollZoom', 'static'];
 
   const obj = {};
   Object.keys(config).forEach(key => {
