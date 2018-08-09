@@ -38,6 +38,7 @@ export const getGeoJson = (pops: Object[]) => {
       name: pop.name || '',
       slug: pop.slug || '',
       id: pop.uuid || '',
+      permalink: pop.permalink || '',
       url: pop.url || '',
       state: pop.building.state || '',
       suite: pop.building_location || '',
