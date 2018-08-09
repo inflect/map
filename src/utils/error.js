@@ -10,7 +10,9 @@ export const checkStatus = (response: Object) => {
 
 export const printError = (errorCode: number, token: string) => {
   if (errorCode === 401) {
-    console.error(`The token ${token} has been deleted by someone on your team. Please create a new token on your team page at inflect.com.`);
+    console.error(
+      `The token ${token} has been deleted by someone on your team. Please create a new token on your team page at inflect.com.`
+    );
   } else if (errorCode === 403) {
     console.error(`The token ${token} has been revoked by Inflect. Contact hello@inflect.com for more information.`);
   } else {
