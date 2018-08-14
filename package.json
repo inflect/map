@@ -35,10 +35,10 @@
     ]
   },
   "dependencies": {
-    "@turf/helpers": "^6.1.4",
-    "es6-promise": "^4.2.4",
-    "mapbox-gl": "^0.47.0",
-    "unfetch": "^3.0.0"
+    "@turf/helpers": "6.1.4",
+    "es6-promise": "4.2.4",
+    "mapbox-gl": "0.47.0",
+    "unfetch": "3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.54",
