@@ -103,6 +103,7 @@ class InflectMap {
       center: [config.lng, config.lat],
       container: config.id,
       dragRotate: false,
+      hash: config.hash,
       interactive: !config.static,
       maxZoom: config.maxZoom,
       minZoom: config.minZoom || getMinZoomToPreventWorldRepeat(config.id),

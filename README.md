@@ -48,6 +48,7 @@ Property | Description
 `dotBorderWidth` | *Number. Optional. Default value: `1`.*<br />The stroke width of the map markers' border, in pixels.
 `dotColor` | *String. Optional. Default value: `#6a7685`.*<br />The main color of the circular map markers. The value can be represented by any valid CSS color representation (hex value, rgb, rgba, named color, etc).
 `dotRadius` | *Number. Optional. Default value: `6`.*<br />The radius of the map markers, in pixels.
+`hash` | *Boolean. Optional. Default value: `false`.*<br />If `true`, coordinates and zoom will be appended as the document location's hash, so when navigating through history (or refreshing the page), the map viewport will be retained. This is most useful when `autoCamera` is set to `false`, and when there is only one instance of the map on the page.
 `height` | *String. Optional. Default value: `inherit`.*<br />The CSS value of the HTML container's height. By default, it takes up the same height as its container. If specifying a pixel height, be sure to include the suffix, e.g. `500px`.
 `lat` | *Number. Optional. Default value: `16.875`.*<br />The latitude of the center coordinate of the map. By default, the map is oriented to be aesthetically centered.
 `lng` | *Number. Optional. Default value: `28.30438`.*<br />The longitude of the center coordinate of the map. By default, the map is oriented to be aesthetically centered.
