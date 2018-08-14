@@ -92,8 +92,8 @@ export const removeSource = (name: string, map: Object) => {
   }
 };
 
-export const getPopupMarkup = (feature: Object, token: string) => {
-  const p = feature.properties;
+export const getPopupMarkup = (features: Object[], token: string) => {
+  const p = features[0].properties;
   const div = document.createElement('div');
   div.className = 'inflect-map-popup';
   div.innerHTML = `
@@ -109,9 +109,9 @@ export const getPopupMarkup = (feature: Object, token: string) => {
   return div;
 };
 
-export const showPopup = (features: Object[], map: Object, token: string, popup?: Object => string | HTMLElement) => {
+export const showPopup = (features: Object[], map: Object, token: string, popup?: Object[] => string | HTMLElement) => {
   if (features.length) {
-    const popupMarkup = popup ? popup(features[0]) : getPopupMarkup(features[0], token);
+    const popupMarkup = popup ? popup(features) : getPopupMarkup(features, token);
     new mapboxgl.Popup({ offset: 16, closeButton: false })
       .setLngLat(features[0].geometry.coordinates)
       .setDOMContent(popupMarkup)
