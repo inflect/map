@@ -2,9 +2,9 @@
 
 Put a map of your PoPs on your website in 5 minutes, courtesy of [Inflect](https://inflect.com).
 
-✨ [Interactive demo and code examples](https://inflectinc.github.io/map/)
+✨ [Interactive demo and code examples](https://inflect.github.io/map/)
 
-⚛️ Use React? We do too! Check out our [React wrapper](https://github.com/InflectInc/map/tree/master/wrappers/react) for this package.
+⚛️ Use React? We do too! Check out our [React wrapper](https://github.com/inflect/map/tree/master/wrappers/react) for this package.
 
 Under the hood, @inflect/map uses [Mapbox GL JS](https://github.com/mapbox/mapbox-gl-js), and is compatible with [browsers that support WebGL](https://www.caniuse.com/#feat=webgl).
 
@@ -86,19 +86,19 @@ Property | Description
 Below are values you can pass to the `theme` property.
 
 ##### `light` (default)
-![Light theme](https://raw.githubusercontent.com/InflectInc/map/master/docs/img/light.png)
+![Light theme](https://raw.githubusercontent.com/inflect/map/master/docs/img/light.png)
 
 ##### `dark` 
-![Dark theme](https://raw.githubusercontent.com/InflectInc/map/master/docs/img/dark.png)
+![Dark theme](https://raw.githubusercontent.com/inflect/map/master/docs/img/dark.png)
 
 ##### `day` 
-![Day theme](https://raw.githubusercontent.com/InflectInc/map/master/docs/img/day.png)
+![Day theme](https://raw.githubusercontent.com/inflect/map/master/docs/img/day.png)
 
 ##### `night` 
-![Night theme](https://raw.githubusercontent.com/InflectInc/map/master/docs/img/night.png)
+![Night theme](https://raw.githubusercontent.com/inflect/map/master/docs/img/night.png)
 
 ##### `satellite` 
-![Satellite theme](https://raw.githubusercontent.com/InflectInc/map/master/docs/img/satellite.png)
+![Satellite theme](https://raw.githubusercontent.com/inflect/map/master/docs/img/satellite.png)
 
 ### Popup
 
