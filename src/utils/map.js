@@ -37,8 +37,6 @@ export const getGeoJson = (pops: Object[]) => {
       city: pop.building.city || '',
       country_name: pop.building.country_name || '',
       id: pop.uuid || '',
-      lat: pop.lat,
-      lng: pop.lng,
       name: pop.name || '',
       permalink: pop.permalink || '',
       slug: pop.slug || '',
@@ -95,6 +93,15 @@ export const removeSource = (name: string, map: Object) => {
   }
 };
 
+export const getAddressMarkup = (p: Object, includeSuite: boolean) =>
+  `
+  <p>${p.building_name}</p>
+  <p>${p.address}</p>
+  <p>${includeSuite ? p.suite : ''}</p>
+  <p>${p.city}, ${p.state} ${p.zip_code}</p>
+  <p>${p.country_name}</p>
+`.trim();
+
 export const getPopupMarkup = (features: Object[], token: string) => {
   const buildings = features.filter(f => f.properties.address === features[0].properties.address);
   const div = document.createElement('div');
@@ -102,16 +109,12 @@ export const getPopupMarkup = (features: Object[], token: string) => {
   if (buildings.length === 1) {
     const p = buildings[0].properties;
     div.innerHTML = `
-      <div class="inflect-map-popup">
+      <div>
         <a href="${p.url}?mapToken=${token}" target="_blank">${p.name}</a>
-        <p>${p.building_name}</p>
-        <p>${p.address}</p>
-        <p>${p.suite}</p>
-        <p>${p.city}, ${p.state} ${p.zip_code}</p>
-        <p>${p.country_name}</p>
+        ${getAddressMarkup(p, true)}
       </div>
     `;
-  } else {
+  } else if (buildings.length >= 1) {
     const rows = buildings
       .filter(f => f.properties.address === buildings[0].properties.address)
       .sort((a, b) => (a.properties.name > b.properties.name ? 1 : -1))
@@ -124,14 +127,10 @@ export const getPopupMarkup = (features: Object[], token: string) => {
           </div>
         `.trim();
       });
-    const p = buildings[0].properties;
     div.innerHTML = `
-      <div class="inflect-map-popup">
+      <div>
         ${rows.join('')}
-        <p>${p.building_name}</p>
-        <p>${p.address}</p>
-        <p>${p.city}, ${p.state} ${p.zip_code}</p>
-        <p>${p.country_name}</p>
+        ${getAddressMarkup(buildings[0].properties, false)}
       </div>
     `;
   }
