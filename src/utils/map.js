@@ -114,7 +114,7 @@ export const getPopupMarkup = (features: Object[], token: string) => {
   } else {
     const rows = buildings
       .filter(f => f.properties.address === buildings[0].properties.address)
-      .sort((a, b) => (a.properties.name - b.properties.name ? 1 : -1))
+      .sort((a, b) => (a.properties.name > b.properties.name ? 1 : -1))
       .map(f => {
         const p = f.properties;
         return `
