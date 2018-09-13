@@ -261,7 +261,7 @@ export const mapboxCSS = `
     background: #fff;
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    padding: 10px 10px 15px;
+    padding: 10px;
     pointer-events: auto;
   }
   .mapboxgl-popup-anchor-top-left .mapboxgl-popup-content {
@@ -344,8 +344,11 @@ export const inflectCSS = `
   }
   .inflect-map-popup p {
     font-size: 12px;
+    margin: 0 !important;
   }
-  .inflect-map-popup > * {
-    margin: 0;
+  .inflect-map-popup-row {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 8px;
+    padding: 0 0 8px;
   }
 `;
