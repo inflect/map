@@ -33,15 +33,16 @@ export const getGeoJson = (pops: Object[]) => {
   const points = pops.filter(pop => pop.building.lng && pop.building.lat).map(pop => {
     const properties = {
       address: pop.building.address || '',
+      building_name: pop.building.name || '',
       city: pop.building.city || '',
       country_name: pop.building.country_name || '',
-      name: pop.name || '',
-      slug: pop.slug || '',
       id: pop.uuid || '',
+      name: pop.name || '',
       permalink: pop.permalink || '',
-      url: pop.url || '',
+      slug: pop.slug || '',
       state: pop.building.state || '',
       suite: pop.building_location || '',
+      url: pop.url || '',
       zip_code: pop.building.zip_code || '',
     };
 
@@ -92,24 +93,57 @@ export const removeSource = (name: string, map: Object) => {
   }
 };
 
+export const getAddressMarkup = (p: Object, includeSuite: boolean) =>
+  `
+  <p>${p.building_name}</p>
+  <p>${p.address}</p>
+  <p>${includeSuite ? p.suite : ''}</p>
+  <p>${p.city}, ${p.state} ${p.zip_code}</p>
+  <p>${p.country_name}</p>
+`.trim();
+
 export const getPopupMarkup = (features: Object[], token: string) => {
-  const p = features[0].properties;
+  const buildings = features.filter(f => f.properties.address === features[0].properties.address);
   const div = document.createElement('div');
   div.className = 'inflect-map-popup';
-  div.innerHTML = `
-    <div class="inflect-map-popup">
-      <a href="${p.url}?mapToken=${token}" target="_blank">${p.name}</a>
-      <p>${p.address}</p>
-      <p>${p.suite}</p>
-      <p>${p.city}, ${p.state} ${p.zip_code}</p>
-      <p>${p.country_name}</p>
-    </div>
-  `;
+  if (buildings.length === 1) {
+    const p = buildings[0].properties;
+    div.innerHTML = `
+      <div>
+        <a href="${p.url}?mapToken=${token}" target="_blank">${p.name}</a>
+        ${getAddressMarkup(p, true)}
+      </div>
+    `;
+  } else if (buildings.length >= 1) {
+    const rows = buildings
+      .filter(f => f.properties.address === buildings[0].properties.address)
+      .sort((a, b) => (a.properties.name > b.properties.name ? 1 : -1))
+      .map(f => {
+        const p = f.properties;
+        return `
+          <div class="inflect-map-popup-row">
+            <a href="${p.url}?mapToken=${token}" target="_blank">${p.name}</a>
+            <p>${p.suite}</p>
+          </div>
+        `.trim();
+      });
+    div.innerHTML = `
+      <div>
+        ${rows.join('')}
+        ${getAddressMarkup(buildings[0].properties, false)}
+      </div>
+    `;
+  }
 
   return div;
 };
 
-export const showPopup = (features: Object[], map: Object, token: string, popup?: Object[] => string | HTMLElement) => {
+export const showPopup = (
+  features: Object[],
+  map: Object,
+  token: string,
+  popup?: (Object[]) => string | HTMLElement
+) => {
   if (features.length) {
     const popupMarkup = popup ? popup(features) : getPopupMarkup(features, token);
     new mapboxgl.Popup({ offset: 16, closeButton: false })

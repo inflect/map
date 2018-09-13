@@ -257,12 +257,15 @@ export const mapboxCSS = `
     border-left-color: #fff;
   }
   .mapboxgl-popup-content {
-    position: relative;
     background: #fff;
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    padding: 10px 10px 15px;
+    max-height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 10px;
     pointer-events: auto;
+    position: relative;
   }
   .mapboxgl-popup-anchor-top-left .mapboxgl-popup-content {
     border-top-left-radius: 0;
@@ -344,8 +347,11 @@ export const inflectCSS = `
   }
   .inflect-map-popup p {
     font-size: 12px;
+    margin: 0 !important;
   }
-  .inflect-map-popup > * {
-    margin: 0;
+  .inflect-map-popup-row {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 8px;
+    padding: 0 0 8px;
   }
 `;
