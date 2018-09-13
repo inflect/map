@@ -72,7 +72,7 @@ Property | Description
 <a name="token"></a>
 ## Creating a map token
 
-1. Create an account on [inflect.com](https://inflect.com), or log in if you already have an account.
+1. Create an account on [inflect.com](https://inflect.com), or log in if you already have an account. If your company has already created a team, ask one of your teammates to invite you to join the team.
 2. On your team page, click the "Team maps" tab.
 3. Click "Create a new map".
 4. Select the data point(s) you'd like to embed on your site, and click "Create map".
@@ -110,6 +110,23 @@ Calling `map.set()` with any properties will update the map.
 
 This is useful if you want to cycle between a couple map tokens &mdash; calling `map.set({ token: newMapToken })` will load the new set of data and animate to its bounding box automatically.
 
+## Potential gotchas
+
+### CSP Directives
+
+As a mitigation for Cross-Site Scripting and other types of web security vulnerabilities, you may use a [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/Security/CSP) (CSP) to specify security policies for your website. If you do, Inflect Map requires the following CSP directives:
+
+```
+worker-src blob: ;
+child-src blob: ;
+img-src data: blob: ;
+connect-src https://*.tiles.mapbox.com https://api.mapbox.com
+```
+
+### Server-side rendering
+
+The dependencies of this package prevent it from being rendered server-side in node environments. As a workaround, import the package dynamically, or prevent the importing of the package in your build phase. If you have any troubles, please open an issue. 
+
 ## iframe
 
 We also host a page that you can embed via iframe. While we highly recommend installing the package instead, you can choose to embed an iframe version on your website if you so please. Just be aware of the following caveats of using an iframe: 
@@ -123,8 +140,3 @@ Required and basic properties listed in [Usage](#usage) are available to the ifr
 ```HTML
 <iframe src="https://embed.inflect.com/map/1/?token=YOUR_TOKEN_HERE" width="100%" height="500" frameborder="0"></iframe>
 ```
-
-## A note when rendering server-side
-
-The dependencies of this package prevent it from being rendered server-side in node environments. As a workaround, import the package dynamically, or prevent the importing of the package in your build phase. If you have any troubles, please open an issue. 
-
