@@ -8,7 +8,27 @@ Put a map of your PoPs on your website in 5 minutes, courtesy of [Inflect](https
 
 Under the hood, @inflect/map uses [Mapbox GL JS](https://github.com/mapbox/mapbox-gl-js), and is compatible with [browsers that support WebGL](https://www.caniuse.com/#feat=webgl).
 
-## Installation
+## Get started with Inflect Maps
+
+1. Create an Inflect account
+2. Create a map of the data you’d like to display
+3. Install the map on your site
+
+## Create an Inflect account
+
+* Go to [inflect.com/register](https://inflect.com/register) to create an Inflect account. It's free!
+
+## Create a map of the data you’d like to display
+
+* Once logged in, go to your ‘Team maps’ page to create a new map
+* Select the data that you’d like to display on your map
+* Click the ‘Create map’ button to save the map and generate a Map Token
+* Use the resulting 24-character alphanumeric string as your `token` when you init the map.
+
+
+Note: you can create as many maps as you’d like. Experiment!
+
+## Install the map on your site
 
     yarn add @inflect/map
     
@@ -34,7 +54,7 @@ map.init({
 Property | Description
 --------- | -----------
 `id` | *String. Required. Default value: `inflect-map`.*<br />The `id` of the HTML container the map should be inserted into.
-`token` | *String. Required. No default value.*<br />Your map token obtained at inflect.com. See [Creating a map token](#token) for more information.
+`token` | *String. Required. No default value.*<br />Your map token obtained at inflect.com.
 
 ### Basic properties
 
@@ -69,14 +89,6 @@ Property | Description
 `onLoad` | *Function. Optional. Default value: none.*<br />An event handler that fires when the map has finished loading.
 `onMoveEnd` | *Function. Optional. Default value: none.*<br />An event handler that fires when the map finishes a pan or a zoom. The map event object will be passed into this function.
 
-<a name="token"></a>
-## Creating a map token
-
-1. Create an account on [inflect.com](https://inflect.com), or log in if you already have an account. If your company has already created a team, ask one of your teammates to invite you to join the team.
-2. On your team page, click the "Team maps" tab.
-3. Click "Create a new map".
-4. Select the data point(s) you'd like to embed on your site, and click "Create map".
-5. Use the resulting 24-character alphanumeric string as your `token` when you init the map.
 
 ## Styling
 
