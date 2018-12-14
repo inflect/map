@@ -11,12 +11,12 @@ Under the hood, @inflect/map uses [Mapbox GL JS](https://github.com/mapbox/mapbo
 ## Get started with Inflect Maps
 
 1. Create an Inflect account
-1. Create a map of the data you’d like to display
-1. Install the map on your site
+2. Create a map of the data you’d like to display
+3. Install the map on your site
 
 ## Create an Inflect account
 
-* Go to inflect.com/register to create an Inflect account. It's free!
+* Go to [inflect.com/register](https://inflect.com/register) to create an Inflect account. It's free!
 
 ## Create a map of the data you’d like to display
 
