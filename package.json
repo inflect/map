@@ -84,7 +84,7 @@
     "ansi-regex":"5.0.1",
     "node-forge":"1.3.0",
     "node-notifier":"8.0.1",
-    "moment":"2.29.2"
+    "moment":"2.29.4"
   }
 }
 
