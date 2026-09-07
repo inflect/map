@@ -73,7 +73,7 @@
     "handlebars" : "^4.7.1",
     "glob-parent": "5.1.2",
     "trim-newlines":"4.0.1",
-    "dot-prop":"5.1.1",
+    "dot-prop":"5.3.0",
     "serialize-javascript":"3.1.0",
     "braces":"2.3.1",
     "merge":"2.1.1",
